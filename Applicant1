@@ -1,0 +1,72 @@
+class applicant:
+    def __init__(self, KeyNumber , Date, Camp, FirstName, LastName, Age,Essay,Payment,Recording,Status,dorm,band,talent,instrument,pair):
+        self.KeyNumber = KeyNumber
+        self.Date = Date
+        self.Camp = Camp
+        self.FirstName = FirstName
+        self.LastName = LastName
+        self.Age = Age
+        self.Essay = Essay
+        self.Payment = Payment
+        self.Recording = Recording
+        self.Status = Status
+        self.dorm = dorm
+        self.band = band
+        self.talent = talent
+        self.instrument = instrument
+        self.pair = pair
+    
+    def getDay(self):
+        return self.Date
+    def getCamp(self):
+        return self.Camp
+    def getFirstName(self):
+        return self.FirstName
+    def getLastName(self):
+        return self.LastName
+    def getAge(self):
+        return self.Age
+    def getEssay(self):
+        return self.Essay
+    def getPayment(self):
+        return self.Payment
+    def getRecording(self):
+        return self.Recording
+    def getStatus(self):
+        return self.Status
+    def getDorm(self):
+        return self.dorm
+    def getBand(self):
+        return self.band
+    def getTalent(self):
+        return self.talent
+    def getInstrument(self):
+        return self.instrument
+    def getPair(self):
+        return self.pair
+    def setDay(self,new_day):
+        self.Date = new_day
+    def getCamp(self, new_Camp):
+        self.Camp = new_Camp
+    def getName(self,new_name):
+        self.name = new_name
+    def getAge(self,new_Age):
+        self.Age = new_Age
+    def getEssay(self,new_Essay):
+        self.Essay = new_Essay
+    def getPayment(self,new_Payment):
+        self.Payment = new_Payment
+    def getRecording(self,new_Recording):
+        self.Recording = new_Recording
+    def getStatus(self,new_Status):
+        self.Status = new_Status
+    def getDorm(self,new_dorm):
+        self.dorm = new_dorm
+    def getBand(self,new_band):
+        self.band = new_band
+    def getTalent(self,new_talent):
+        self.talent = new_talent
+    def getInstrument(self,new_instrument):
+        self.instrument = new_instrument
+    def getPair(self,new_pair):
+        self.pair = new_pair
