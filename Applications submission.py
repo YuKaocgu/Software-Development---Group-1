@@ -2,7 +2,6 @@ from datetime import timedelta, datetime
 import xlsxwriter
 
 applicationList = {}
-applicationList = {1: ['jksdbf', 'ksdjbf', 'sdongoian', 'M', '26', '04-12-17', '1', 'Y', 'Y', 'Y', 'awaiting directors call']}
 
 camp1=datetime.strptime("06-10-17", "%m-%d-%y")
 camp2=datetime.strptime("07-08-17", "%m-%d-%y")
