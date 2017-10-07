@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Bands</title>
+</head>
+<body>
+<!--<table>-->
+
+    <!--<th>abc</th>-->
+    <!--<th>cdx</th>-->
+
+    <!--{% for bands in bands_list %}-->
+    <!--<tr>-->
+    <!--<td>{{ bands.camper.age }}</td>-->
+    <!--<td>{{ bands.name }}</td>-->
+        <!--</tr>-->
+    <!--{% endfor %}-->
+
+<!--</table>-->
+
+<table border="1">
+  <tr>
+    <th>      </th>
+    {% for band in bands %}
+        <th>{{ band.name }}</th>
+    {% endfor %}
+  </tr>
+
+
+  <tr>
+    <td style="font-weight:bold">Singer</td>
+      {% for camper in bands_list.singer %}
+          <td>{{ camper.name }}/{{ camper.rank }}</td>
+      {% endfor %}
+  </tr>
+  <tr>
+    <td style="font-weight:bold">Guitarist</td>
+      {% for camper in bands_list.guitarist %}
+          <td>{{ camper.name }}/{{ camper.rank }}</td>
+      {% endfor %}
+  </tr>
+  <tr>
+    <td style="font-weight:bold">Drummer</td>
+      {% for camper in bands_list.drummer %}
+          <td>{{ camper.name }}/{{ camper.rank }}</td>
+      {% endfor %}
+  </tr>
+  <tr>
+    <td style="font-weight:bold">Bassist</td>
+      {% for camper in bands_list.bassist %}
+          <td>{{ camper.name }}/{{ camper.rank }}</td>
+      {% endfor %}
+  </tr>
+  <tr>
+    <td style="font-weight:bold">Keyboardist</td>
+      {% for camper in bands_list.keyboardist %}
+          <td>{{ camper.name }}/{{ camper.rank }}</td>
+      {% endfor %}
+  </tr>
+    <tr>
+    <td style="font-weight:bold">Instrumentalist</td>
+          {% for camper in bands_list.instrumentalist %}
+          <td>{{ camper.name }}/{{ camper.rank }}</td>
+      {% endfor %}
+
+  </tr>
+</table>
+
+
+<a href="{% url 'camper' %}">Add Camper</a>
+<a href="{% url 'dorms' %}">Show Dorms</a>
+</body>
+</html>

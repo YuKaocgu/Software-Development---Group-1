@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+
+<table>
+
+    <th>abc</th>
+    <th>cdx</th>
+
+    {% for camper in campers_list %}
+    <tr>
+    <td>{{ camper.age }}</td>
+    <td>{{ camper.name }}</td>
+        </tr>
+    {% endfor %}
+
+</table>
+
+</body>
+</html>

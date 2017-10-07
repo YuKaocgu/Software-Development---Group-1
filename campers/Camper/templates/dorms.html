@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Dorms</title>
+</head>
+<body>
+
+
+
+
+<table border="1">
+    <th>Dorm name</th>
+    <th>info</th>
+    <th>info</th>
+    <th>info</th>
+    <th>info</th>
+    <th>info</th>
+    <th>info</th>
+
+    <tbody>
+    {% for dorm in dorms %}
+        <tr>
+            <td>{{ dorm.name }}</td>
+            {% for camper in dorm.camper.all %}
+                <td>{{ camper.name }}/{{ camper.rank }}</td>
+            {% endfor %}
+
+        </tr>
+
+    {% endfor %}
+
+    </tbody>
+</table>
+
+
+<a href="{% url 'camper' %}">Add Camper</a>
+<a href="{% url 'bands' %}">Show Bands</a>
+</body>
+</html>
