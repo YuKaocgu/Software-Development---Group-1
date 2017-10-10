@@ -28,13 +28,13 @@ for row in range(nRow, nlRow):
     Fname = ws['B' + str(row)].value
     Lname = ws['C' + str(row)].value
     gender = (ws['E' + str(row)].value)
-    age = (ws['F' + str(row)].value)
+    age = int((ws['F' + str(row)].value))
     talent = ws['M' + str(row)].value
     instrument = ws['N' + str(row)].value
     band = str(ws['P' + str(row)].value)
     dorm = str(ws['O' + str(row)].value)
     #Dorm assign:
-    if gender = 'M':
+    if gender == 'M':
         dorm_result = Dorm_Assign.dorm_assign(DormM1,DormM2,DormM3,age)
         if dorm_result == 1 :
             sheet['O' + str(row)] = "M1"
@@ -45,7 +45,7 @@ for row in range(nRow, nlRow):
         else:
             sheet['O' + str(row)] = "M3"
             DormM3.append(age)
-    if gender = 'F':
+    if gender == 'F':
         dorm_result = Dorm_Assign.dorm_assign(DormF1,DormF2,DormF3,age)
         if dorm_result == 1 :
             sheet['O' + str(row)] = "F1"

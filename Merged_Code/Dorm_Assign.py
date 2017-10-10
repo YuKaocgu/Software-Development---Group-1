@@ -14,9 +14,9 @@ def dorm_assign(Dorm1,Dorm2,Dorm3,age):
     Dorm_Status = [isFull(Dorm1),isFull(Dorm2),isFull(Dorm3)]
     if Dorm_Status == [False,False,False]:
         check_list = [ abs(avg(Dorm1)-age),abs(avg(Dorm2)-age),abs(avg(Dorm3)-age)]
-        if max(check_list) == abs(avg1-age):
+        if max(check_list) == abs(avg(Dorm1)-age):
             return 1
-        elif max(check_list) == abs(avg2-age):
+        elif max(check_list) == abs(avg(Dorm2)-age):
             return 2
         else:
             return 3
