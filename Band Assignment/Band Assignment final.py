@@ -33,7 +33,7 @@ def band_assign():
 
         # Group 1 assignment
         if band == "None":
-            if talent == 1 and t1 < 1 :
+            if talent == "1" and t1 < 1 :
                 if group1_count < 6:
                     if s1<1 and gender in ('M','F'):
                         if gm1_count < 3:
@@ -154,7 +154,7 @@ def band_assign():
                                 t1 += 1
                                 sheet['P' + str(row)] = 1
                                 wb.save(url)
-            elif talent == 2 and t2<1:
+            elif talent == "2" and t2<1:
                 if group1_count < 6:
                     if s1<1 and gender in ('M','F'):
                         if gm1_count < 3:
@@ -275,7 +275,7 @@ def band_assign():
                                 t2 += 1
                                 sheet['P' + str(row)] = 1
                                 wb.save(url)
-            elif talent == 3 and t3 < 1:
+            elif talent == "3" and t3 < 1:
                 if group1_count < 6:
                     if s1 < 1 and gender in ('M', 'F'):
                         if gm1_count < 3:
@@ -396,7 +396,7 @@ def band_assign():
                                 t3 += 1
                                 sheet['P' + str(row)] = 1
                                 wb.save(url)
-            elif talent == 4 and t4 < 1:
+            elif talent == "4" and t4 < 1:
                 if group1_count < 6:
                     if s1 < 1 and gender in ('M', 'F'):
                         if gm1_count < 3:
@@ -517,7 +517,7 @@ def band_assign():
                                 t4 += 1
                                 sheet['P' + str(row)] = 1
                                 wb.save(url)
-            elif talent == 1 and t5 < 1:
+            elif talent == "1" and t5 < 1:
                 if group1_count < 6:
                     if s1 < 1 and gender in ('M', 'F'):
                         if gm1_count < 3:
@@ -639,7 +639,7 @@ def band_assign():
                                 sheet['P' + str(row)] = 1
                                 wb.save(url)
 
-            elif talent == 4 and t6 < 1:
+            elif talent == "4" and t6 < 1:
                 if group1_count < 6:
                     if s1 < 1 and gender in ('M', 'F'):
                         if gm1_count < 3:
@@ -763,7 +763,7 @@ def band_assign():
 
             # Group 2 assignment
         if band == "None":
-            if talent == 2 and t21 < 1:
+            if talent == "2" and t21 < 1:
                 if group2_count < 6:
                     if s2 < 1 and gender in ('M', 'F'):
                         if gm2_count < 3:
@@ -884,7 +884,7 @@ def band_assign():
                                 t21 += 1
                                 sheet['P' + str(row)] = 2
                                 wb.save(url)
-            elif talent == 3 and t22 < 1:
+            elif talent == "3" and t22 < 1:
                 if group2_count < 6:
                     if s2 < 1 and gender in ('M', 'F'):
                         if gm2_count < 3:
@@ -1005,7 +1005,7 @@ def band_assign():
                                 t22 += 1
                                 sheet['P' + str(row)] = 2
                                 wb.save(url)
-            elif talent == 4 and t23 < 1:
+            elif talent == "4" and t23 < 1:
                 if group2_count < 6:
                     if s2 < 1 and gender in ('M', 'F'):
                         if gm2_count < 3:
@@ -1126,7 +1126,7 @@ def band_assign():
                                 t23 += 1
                                 sheet['P' + str(row)] = 2
                                 wb.save(url)
-            elif talent == 1 and t24 < 1:
+            elif talent == "1" and t24 < 1:
                 if group2_count < 6:
                     if s2 < 1 and gender in ('M', 'F'):
                         if gm2_count < 3:
@@ -1247,7 +1247,7 @@ def band_assign():
                                 t24 += 1
                                 sheet['P' + str(row)] = 2
                                 wb.save(url)
-            elif talent == 2 and t25 < 1:
+            elif talent == "2" and t25 < 1:
                 if group2_count < 6:
                     if s2 < 1 and gender in ('M', 'F'):
                         if gm2_count < 3:
@@ -1369,7 +1369,7 @@ def band_assign():
                                 sheet['P' + str(row)] = 2
                                 wb.save(url)
 
-            elif talent == 3 and t26 < 1:
+            elif talent == "3" and t26 < 1:
                 if group2_count < 6:
                     if s2 < 1 and gender in ('M', 'F'):
                         if gm2_count < 3:
@@ -1492,7 +1492,7 @@ def band_assign():
                                 wb.save(url)
         # Group 3 assignment
         if band == "None":
-            if talent == 3 and t31 < 1:
+            if talent == "3" and t31 < 1:
                 if group3_count < 6:
                     if s3 < 1 and gender in ('M', 'F'):
                         if gm3_count < 3:
@@ -1613,7 +1613,7 @@ def band_assign():
                                 t31 += 1
                                 sheet['P' + str(row)] = 3
                                 wb.save(url)
-            elif talent == 4 and t32 < 1:
+            elif talent == "4" and t32 < 1:
                 if group3_count < 6:
                     if s3 < 1 and gender in ('M', 'F'):
                         if gm3_count < 3:
@@ -1734,7 +1734,7 @@ def band_assign():
                                 t32 += 1
                                 sheet['P' + str(row)] = 3
                                 wb.save(url)
-            elif talent == 1 and t33 < 1:
+            elif talent == "1" and t33 < 1:
                 if group3_count < 6:
                     if s3 < 1 and gender in ('M', 'F'):
                         if gm3_count < 3:
@@ -1855,7 +1855,7 @@ def band_assign():
                                 t33 += 1
                                 sheet['P' + str(row)] = 3
                                 wb.save(url)
-            elif talent == 2 and t34 < 1:
+            elif talent == "2" and t34 < 1:
                 if group3_count < 6:
                     if s3 < 1 and gender in ('M', 'F'):
                         if gm3_count < 3:
@@ -1976,7 +1976,7 @@ def band_assign():
                                 t34 += 1
                                 sheet['P' + str(row)] = 3
                                 wb.save(url)
-            elif talent == 4 and t35 < 1:
+            elif talent == "4" and t35 < 1:
                 if group3_count < 6:
                     if s3 < 1 and gender in ('M', 'F'):
                         if gm3_count < 3:
@@ -2098,7 +2098,7 @@ def band_assign():
                                 sheet['P' + str(row)] = 3
                                 wb.save(url)
 
-            elif talent == 1 and t36 < 1:
+            elif talent == "1" and t36 < 1:
                 if group3_count < 6:
                     if s3 < 1 and gender in ('M', 'F'):
                         if gm3_count < 3:
@@ -2222,7 +2222,7 @@ def band_assign():
 
         # Group 4 assignment
         if band == "None":
-            if talent == 4 and t41 < 1:
+            if talent == "4" and t41 < 1:
                 if group4_count < 6:
                     if s4 < 1 and gender in ('M', 'F'):
                         if gm4_count < 3:
@@ -2343,7 +2343,7 @@ def band_assign():
                                 t41 += 1
                                 sheet['P' + str(row)] = 4
                                 wb.save(url)
-            elif talent == 1 and t42 < 1:
+            elif talent == "1" and t42 < 1:
                 if group4_count < 6:
                     if s4 < 1 and gender in ('M', 'F'):
                         if gm4_count < 3:
@@ -2464,7 +2464,7 @@ def band_assign():
                                 t42 += 1
                                 sheet['P' + str(row)] = 4
                                 wb.save(url)
-            elif talent == 2 and t43 < 1:
+            elif talent == "2" and t43 < 1:
                 if group4_count < 6:
                     if s4 < 1 and gender in ('M', 'F'):
                         if gm4_count < 3:
@@ -2585,7 +2585,7 @@ def band_assign():
                                 t43 += 1
                                 sheet['P' + str(row)] = 4
                                 wb.save(url)
-            elif talent == 3 and t44 < 1:
+            elif talent == "3" and t44 < 1:
                 if group4_count < 6:
                     if s4 < 1 and gender in ('M', 'F'):
                         if gm4_count < 3:
@@ -2706,7 +2706,7 @@ def band_assign():
                                 t44 += 1
                                 sheet['P' + str(row)] = 4
                                 wb.save(url)
-            elif talent == 3 and t45 < 1:
+            elif talent == "3" and t45 < 1:
                 if group4_count < 6:
                     if s4 < 1 and gender in ('M', 'F'):
                         if gm4_count < 3:
@@ -2828,7 +2828,7 @@ def band_assign():
                                 sheet['P' + str(row)] = 4
                                 wb.save(url)
 
-            elif talent == 2 and t46 < 1:
+            elif talent == "2" and t46 < 1:
                 if group4_count < 6:
                     if s4 < 1 and gender in ('M', 'F'):
                         if gm4_count < 3:
@@ -2952,7 +2952,7 @@ def band_assign():
 
             # Group 5 assignment
         if band == "None":
-            if talent == 1 and t51 < 1:
+            if talent == "1" and t51 < 1:
                 if group5_count < 6:
                     if s5 < 1 and gender in ('M', 'F'):
                         if gm5_count < 3:
@@ -3073,7 +3073,7 @@ def band_assign():
                                 t51 += 1
                                 sheet['P' + str(row)] = 5
                                 wb.save(url)
-            elif talent == 2 and t52 < 1:
+            elif talent == "2" and t52 < 1:
                 if group5_count < 6:
                     if s5 < 1 and gender in ('M', 'F'):
                         if gm5_count < 3:
@@ -3194,7 +3194,7 @@ def band_assign():
                                 t52 += 1
                                 sheet['P' + str(row)] = 5
                                 wb.save(url)
-            elif talent == 3 and t53 < 1:
+            elif talent == "3" and t53 < 1:
                 if group5_count < 6:
                     if s5 < 1 and gender in ('M', 'F'):
                         if gm5_count < 3:
@@ -3315,7 +3315,7 @@ def band_assign():
                                 t53 += 1
                                 sheet['P' + str(row)] = 5
                                 wb.save(url)
-            elif talent == 4 and t54 < 1:
+            elif talent == "4" and t54 < 1:
                 if group5_count < 6:
                     if s5 < 1 and gender in ('M', 'F'):
                         if gm5_count < 3:
@@ -3436,7 +3436,7 @@ def band_assign():
                                 t54 += 1
                                 sheet['P' + str(row)] = 5
                                 wb.save(url)
-            elif talent == 1 and t55 < 1:
+            elif talent == "1" and t55 < 1:
                 if group5_count < 6:
                     if s5 < 1 and gender in ('M', 'F'):
                         if gm5_count < 3:
@@ -3558,7 +3558,7 @@ def band_assign():
                                 sheet['P' + str(row)] = 5
                                 wb.save(url)
 
-            elif talent == 4 and t56 < 1:
+            elif talent == "4" and t56 < 1:
                 if group5_count < 6:
                     if s5 < 1 and gender in ('M', 'F'):
                         if gm5_count < 3:
@@ -3682,7 +3682,7 @@ def band_assign():
 
             # Group 6 assignment
         if band == "None":
-            if talent == 2 and t61 < 1:
+            if talent == "2" and t61 < 1:
                 if group6_count < 6:
                     if s6 < 1 and gender in ('M', 'F'):
                         if gm6_count < 3:
@@ -3803,7 +3803,7 @@ def band_assign():
                                 t61 += 1
                                 sheet['P' + str(row)] = 6
                                 wb.save(url)
-            elif talent == 3 and t62 < 1:
+            elif talent == "3" and t62 < 1:
                 if group6_count < 6:
                     if s6 < 1 and gender in ('M', 'F'):
                         if gm6_count < 3:
@@ -3924,7 +3924,7 @@ def band_assign():
                                 t62 += 1
                                 sheet['P' + str(row)] = 6
                                 wb.save(url)
-            elif talent == 4 and t63 < 1:
+            elif talent == "4" and t63 < 1:
                 if group6_count < 6:
                     if s6 < 1 and gender in ('M', 'F'):
                         if gm6_count < 3:
@@ -4045,7 +4045,7 @@ def band_assign():
                                 t63 += 1
                                 sheet['P' + str(row)] = 6
                                 wb.save(url)
-            elif talent == 1 and t64 < 1:
+            elif talent == "1" and t64 < 1:
                 if group6_count < 6:
                     if s6 < 1 and gender in ('M', 'F'):
                         if gm6_count < 3:
@@ -4166,7 +4166,7 @@ def band_assign():
                                 t64 += 1
                                 sheet['P' + str(row)] = 6
                                 wb.save(url)
-            elif talent == 2 and t65 < 1:
+            elif talent == "2" and t65 < 1:
                 if group6_count < 6:
                     if s6 < 1 and gender in ('M', 'F'):
                         if gm6_count < 3:
@@ -4288,7 +4288,7 @@ def band_assign():
                                 sheet['P' + str(row)] = 6
                                 wb.save(url)
 
-            elif talent == 3 and t66 < 1:
+            elif talent == "3" and t66 < 1:
                 if group6_count < 6:
                     if s6 < 1 and gender in ('M', 'F'):
                         if gm6_count < 3:
@@ -4411,7 +4411,7 @@ def band_assign():
                                 wb.save(url)
             # Group 7 assignment
         if band == "None":
-            if talent == 3 and t71 < 1:
+            if talent == "3" and t71 < 1:
                 if group7_count < 6:
                     if s7 < 1 and gender in ('M', 'F'):
                         if gm7_count < 3:
@@ -4532,7 +4532,7 @@ def band_assign():
                                 t71 += 1
                                 sheet['P' + str(row)] = 7
                                 wb.save(url)
-            elif talent == 4 and t72 < 1:
+            elif talent == "4" and t72 < 1:
                 if group7_count < 6:
                     if s7 < 1 and gender in ('M', 'F'):
                         if gm7_count < 3:
@@ -4653,7 +4653,7 @@ def band_assign():
                                 t72 += 1
                                 sheet['P' + str(row)] = 7
                                 wb.save(url)
-            elif talent == 1 and t73 < 1:
+            elif talent == "1" and t73 < 1:
                 if group7_count < 6:
                     if s7 < 1 and gender in ('M', 'F'):
                         if gm7_count < 3:
@@ -4774,7 +4774,7 @@ def band_assign():
                                 t73 += 1
                                 sheet['P' + str(row)] = 7
                                 wb.save(url)
-            elif talent == 2 and t74 < 1:
+            elif talent == "2" and t74 < 1:
                 if group7_count < 6:
                     if s7 < 1 and gender in ('M', 'F'):
                         if gm7_count < 3:
@@ -4895,7 +4895,7 @@ def band_assign():
                                 t74 += 1
                                 sheet['P' + str(row)] = 7
                                 wb.save(url)
-            elif talent == 4 and t75 < 1:
+            elif talent == "4" and t75 < 1:
                 if group7_count < 6:
                     if s7 < 1 and gender in ('M', 'F'):
                         if gm7_count < 3:
@@ -5017,7 +5017,7 @@ def band_assign():
                                 sheet['P' + str(row)] = 7
                                 wb.save(url)
 
-            elif talent == 1 and t76 < 1:
+            elif talent == "1" and t76 < 1:
                 if group7_count < 6:
                     if s7 < 1 and gender in ('M', 'F'):
                         if gm7_count < 3:
@@ -5141,7 +5141,7 @@ def band_assign():
 
         # Group 8 assignment
         if band == "None":
-            if talent == 4 and t81 < 1:
+            if talent == "4" and t81 < 1:
                 if group8_count < 6:
                     if s8 < 1 and gender in ('M', 'F'):
                         if gm8_count < 3:
@@ -5262,7 +5262,7 @@ def band_assign():
                                 t81 += 1
                                 sheet['P' + str(row)] = 8
                                 wb.save(url)
-            elif talent == 1 and t82 < 1:
+            elif talent == "1" and t82 < 1:
                 if group8_count < 6:
                     if s8 < 1 and gender in ('M', 'F'):
                         if gm8_count < 3:
@@ -5383,7 +5383,7 @@ def band_assign():
                                 t82 += 1
                                 sheet['P' + str(row)] = 8
                                 wb.save(url)
-            elif talent == 2 and t83 < 1:
+            elif talent == "2" and t83 < 1:
                 if group8_count < 6:
                     if s8 < 1 and gender in ('M', 'F'):
                         if gm8_count < 3:
@@ -5504,7 +5504,7 @@ def band_assign():
                                 t83 += 1
                                 sheet['P' + str(row)] = 8
                                 wb.save(url)
-            elif talent == 3 and t84 < 1:
+            elif talent == "3" and t84 < 1:
                 if group8_count < 6:
                     if s8 < 1 and gender in ('M', 'F'):
                         if gm8_count < 3:
@@ -5625,7 +5625,7 @@ def band_assign():
                                 t84 += 1
                                 sheet['P' + str(row)] = 8
                                 wb.save(url)
-            elif talent == 3 and t85 < 1:
+            elif talent == "3" and t85 < 1:
                 if group8_count < 6:
                     if s8 < 1 and gender in ('M', 'F'):
                         if gm8_count < 3:
@@ -5747,7 +5747,7 @@ def band_assign():
                                 sheet['P' + str(row)] = 8
                                 wb.save(url)
 
-            elif talent == 2 and t86 < 1:
+            elif talent == "2" and t86 < 1:
                 if group8_count < 6:
                     if s8 < 1 and gender in ('M', 'F'):
                         if gm8_count < 3:
