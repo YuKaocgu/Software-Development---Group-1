@@ -1,4 +1,8 @@
 import numpy
+import openpyxl as px
+import pandas as pd
+import warnings
+
 def test():
     age = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24]
     Dorm1 = []
@@ -17,7 +21,6 @@ def avg(data_List):
         return 0
     else:
         return sum(data_List)/len(data_List)
-
 def dorm_assign(Dorm1,Dorm2,Dorm3,age):
     Dorm_Status = [isFull(Dorm1),isFull(Dorm2),isFull(Dorm3)]
     if Dorm_Status == [False,False,False]:
@@ -62,4 +65,49 @@ def dorm_assign(Dorm1,Dorm2,Dorm3,age):
         Dorm3.append(age)
         return 3
 
-
+def start_assign():
+    url = "DD.xlsx"
+     # Fill in Data .
+    warnings.simplefilter("ignore") 
+    wb=px.load_workbook(url)
+    ws=wb.get_sheet_by_name("Sheet1")
+    sheet = wb.active
+    DormM1 = []
+    DormM2 = []
+    DormM3 = []
+    DormF1 = []
+    DormF2 = []
+    DormF3 = []
+    
+    nRow = 2
+    nlRow = ws.max_row+1
+    nlColumn = ws.max_column
+    # Capturing each row of data from columns.
+    for row in range(nRow, nlRow):
+        # Only targeting Accepted candidates
+        status = ws['L' + str(row)].value
+        if status=="A":
+            camp = ws['H' + str(row)].value
+            Fname = ws['B' + str(row)].value
+            Lname = ws['C' + str(row)].value
+            gender = (ws['E' + str(row)].value)
+            age = int((ws['F' + str(row)].value))
+            dorm = str(ws['O' + str(row)].value)
+            #Dorm assign:
+            if gender == 'M':
+                dorm_result = Dorm_Assign.dorm_assign(DormM1,DormM2,DormM3,age)
+                if dorm_result == 1 :
+                    sheet['O' + str(row)] = "M1"
+                elif dorm_result == 2:
+                    sheet['O' + str(row)] = "M2"
+                else:
+                    sheet['O' + str(row)] = "M3"
+            if gender == 'F':
+                dorm_result = Dorm_Assign.dorm_assign(DormF1,DormF2,DormF3,age)
+                if dorm_result == 1 :
+                    sheet['O' + str(row)] = "F1"
+                elif dorm_result == 2:
+                    sheet['O' + str(row)] = "F2"
+                else:
+                    sheet['O' + str(row)] = "F3"
+    wb.save(url)
