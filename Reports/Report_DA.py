@@ -29,4 +29,7 @@ def report_dorm_assignment():
     F3 = pysqldf("Select [ID Number],[First Name], [Last Name], [Dorm] from xl where [Status]='A'  and [Dorm]='F3' order by [First Name]")
     F3.to_excel(sav, sheet_name='Female Dorm3', index=False)
 
+    DE = pysqldf("Select [ID Number],[First Name], [Last Name], [Band] from xl where [Status]='A'  and [Dorm]='' order by [First Name]")
+    DE.to_excel(sav, sheet_name='Unassigned', index=False)
+
     sav.save()
