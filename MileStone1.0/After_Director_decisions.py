@@ -1,11 +1,8 @@
-#!/usr/bin/env python3
-# -*- coding: utf-8 -*-
+#Needs to be testet
 """
 Created on Mon Sep 25 20:35:45 2017
 
 @author: ChristofferGamborg
-
-Jeg mangler at få den til at iterere flere gange - et for loop i et for loop.
 """
 from datetime import timedelta, datetime
 import xlsxwriter
@@ -37,6 +34,18 @@ def editApplication():
             if NewStatus == 'D' or NewStatus == 'd':
                 DeclinedList[key] = NewList[key]
                 continue
+            elif NewStatus in ['W','w']:
+                Talent = input ('Enter Talent (1-4): ')
+                while Talent not in ['1','2','3','4']:
+                    print('Invalid Input! ')
+                    Talent = input ('Enter Talent (1-4): ')
+                Instrument = input ('\n'.join(['enter instrument: ', 'S = Singer', 'G = Guitarist', 'D = Drummer', 'B = Bassist','K = Keyboardist', 'I = Instrumentalist', '']))
+                while Instrument not in ['S','s','G','g','D','d','B','b','K','k','I','i']:
+                    print ('Invalid Input!')
+                    Instrument = input ('\n'.join(['enter instrument: ', 'S = Singer', 'G = Guitarist', 'D = Drummer', 'B = Bassist','K = Keyboardist', 'I = Instrumentalist']))
+                FinalList[key] = NewList[key]
+                FinalList[key].append(Talent)
+                FinalList[key].append(Instrument)
             elif NewStatus in ['A', 'a']:
                 Talent = input ('Enter Talent (1-4): ')
                 while Talent not in ['1','2','3','4']:
@@ -54,6 +63,7 @@ def editApplication():
             
     workbook = xlsxwriter.Workbook('DD.xlsx')
     worksheet = workbook.add_worksheet()
+    Declined(director) = workbook.add_worksheet()
 
     worksheet.write(0, 0, "ID Number")
     worksheet.write(0, 1, "First Name")
@@ -76,6 +86,28 @@ def editApplication():
     for key in FinalList.keys():
         worksheet.write(row, 0, key)
         worksheet.write_row(row, 1, FinalList[key])
+        row += 1
+        row = 1
+    Declined(director).write(0, 0, "ID Number")
+    Declined(director).write(0, 1, "First Name")
+    Declined(director).write(0, 2, "Last Name")
+    Declined(director).write(0, 3, "Adress")
+    Declined(director).write(0, 4, "Gender")
+    Declined(director).write(0, 5, "Age")
+    Declined(director).write(0, 6, "Date")
+    Declined(director).write(0, 7, "Camp")
+    Declined(director).write(0, 8, "Essay Included?")
+    Declined(director).write(0, 9, "Payment Cleared?")
+    Declined(director).write(0, 10, "Recording Included?")
+    Declined(director).write(0, 11, "Status")
+    Declined(director).write(0, 12, "Talent")
+    Declined(director).write(0, 13, "Instrument")
+    Declined(director).write(0, 14, "Dorm")
+    Declined(director).write(0, 15, "Band")
+    col = 0
+    for key in DeclinedList.keys():
+        worksheet1.write(row, 0, key)
+        worksheet1.write_row(row, 1, DeclinedList[key])
         row += 1
     workbook.close()
     
