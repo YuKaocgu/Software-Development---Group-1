@@ -23,10 +23,8 @@ def timeCheck(Date, Camp):
     else: 
         difference = camp3 - transform  
     if difference <= timedelta(32) or difference >= timedelta(90):
-        print ('')
         return False
     else:
-        print ('Application recived in time. Continue process')
         return True
 
 def checkIfY(X):
@@ -41,30 +39,41 @@ def checkIfYorN(X):
     else:
         return False
 
-def fillData(ListOfInformation, KeyNumber,FirstName, LastName, Adress, Gender, Age, Date, Camp, Essay, Payment, Recording, stage):
-    if stage == 1:
-        Essay = 'Y'
-        print('The application did not have an recording, Application is therfore invalid')
-        Status = 'Rejected - Incomplete'
-    elif stage == 2:
-        Essay = 'Y'
-        Payment = 'Y'
-        print('The application did not have an recording, Application is therfore invalid')
-        Status = 'Rejected - Incomplete'
-    else stage == 3:
-        Essay = 'Y'
-        Payment = 'Y'
-        Recording = 'Y'
-        print('The application did not have an recording, Application is therfore invalid')
-        Status = 'Rejected - Incomplete'
 
+def fillData(Input):
+    global Payment
+    global Recording
+    global Essay
+    global fillStatus
+    if Input in ['N','n']:
+        print('Application was Incomplete')
+        fillStatus = 'Rejected - Incomplete'
+        print (fillStatus)
+        return False
+    
+    elif checkIfY(Input) == True:
+        return True
+    else:
+        print ('Wrong input, please check source')
+        return False
 
-    ListOfInformation = [FirstName, LastName, Adress, Gender, Age, Date, Camp, Essay, Payment, Recording, Status]
-    applicationList[(KeyNumber)] = ListOfInformation
+  
+""" elif Payment != '' and Payment in ['N','n']:
+        Recording = 'NA'
+        print('The application did not have an recording, Application is therfore invalid')
+        Status = 'Rejected - Incomplete'
+        return ListOfInformation
+    elif Recording!= '' and Recording in ['N', 'n']:
+        print('The application did not have an recording, Application is therfore invalid')
+        Status = 'Rejected - Incomplete'
+        ListOfInformation = [FirstName, LastName, Adress, Gender, Age, Date, Camp, Essay, Payment, Recording, Status]
+        return ListOfInformation """
         
 def Applications():
     """ Applications should be an interface for the clerk to type in the applications recived for FuRS"""
     ListOfInformation = []
+    FirstName = LastName = Adress = Gender = Age = Date = Essay = Payment = Recording = Status = 'NA'
+    
     if not applicationList:
         KeyNumber = 0
     else:
@@ -80,6 +89,9 @@ def Applications():
                 print ('input must be M or F!')
                 Gender = input ('\n'.join(['Enter Gender: ','M = Male', 'F = Female', '']))
             Age = input ("Enter Age of applicant: ")
+            while not Age.isdigit():
+                print ('Input must be a number')
+                Age = input ("Enter Age of applicant: ")
             Adress = input ("Enter Street adresse, Zip Code, City, State): ")
             Adress = Adress.replace(","," ")
             Date = input ("Enter date of recived application (MM-DD-YY): ")
@@ -88,6 +100,7 @@ def Applications():
                 print ('Invalid Input! Please write either 1, 2 or 3')
                 Camp = input ('\n'.join(["Enter the Camps they want to attend: ", "1 = June", "2 = July", "3 = August", '']))
             if timeCheck(Date, Camp) == False:
+                    print ('Application not recived in time.')
                     Status = 'Rejected - Time'
                     Essay = 'NA' 
                     Payment = 'NA'
@@ -101,40 +114,33 @@ def Applications():
             while checkIfYorN(Essay) == False:
                 print ('Please write either Y or N')
                 Essay = input ("Does the Application contain an essay? (Y or N)")
-            if Essay == 'N' or Essay == 'n':
-                Payment = 'NA'
-                Recording = 'NA'
-                print('Payment did not clear, Application is therfore invalid')
-                Status = 'Rejected - Incomplete'
-                ListOfInformation = [FirstName, LastName, Adress, Gender, Age, Date, Camp, Essay, Payment, Recording, Status]
+            if fillData(Essay) == False:
+                ListOfInformation = [FirstName, LastName, Adress, Gender, Age, Date, Camp, Essay, Payment, Recording, fillStatus]
                 applicationList[(KeyNumber)] = ListOfInformation
                 continue
-            elif Essay == 'Y' or Essay == 'y': 
+            else: 
                 print ('Essay Included. Continue process')
             Payment = input ("Did the payment clear? (Y or N): ")
-            while Payment not in ['Y', 'y', 'N', 'n']:
+            while checkIfYorN(Payment) == False:
                 print ('Please write either Y or N')
                 Payment = input ("Did the payment clear? (Y or N): ")
-            if Payment == 'N' or Payment == 'n':
-                Recording = 'NA'
-                print('The application did not have an recording, Application is therfore invalid')
-                Status = 'Rejected - Incomplete'
-                ListOfInformation = [FirstName, LastName, Adress, Gender, Age, Date, Camp, Essay, Payment, Recording, Status]
+            if fillData(Payment) == False:
+                ListOfInformation = [FirstName, LastName, Adress, Gender, Age, Date, Camp, Essay, Payment, Recording, fillStatus]
                 applicationList[(KeyNumber)] = ListOfInformation
                 continue
             elif Payment == 'Y' or Payment == 'y': 
                 print ('Payment cleared. Continue process')
             Recording = input ("Did the application have an recording? (Y or N): ")
-            while Recording not in ['Y', 'y', 'N', 'n']:
+            while checkIfYorN(Recording) == False:
                 print ('Please write either Y or N')
                 Recording = input ("Did the application have an recording? (Y or N): ")
-            if Recording == 'N' or Recording =='n':
+            if fillData(Recording) != True:
                 print('The application did not have an recording, Application is therfore invalid')
                 Status = 'Rejected - Incomplete'
-                ListOfInformation = [FirstName, LastName, Adress, Gender, Age, Date, Camp, Essay, Payment, Recording, Status]
+                ListOfInformation = [FirstName, LastName, Adress, Gender, Age, Date, Camp, Essay, Payment, Recording, fillStatus]
                 applicationList[(KeyNumber)] = ListOfInformation   
                 continue
-            elif Recording == 'Y' or Recording == 'y': 
+            elif checkIfY(Recording) == True: 
                 print ('Recording in application. Continue process')
             Status = 'awaiting directors call'
             ListOfInformation = [FirstName, LastName, Adress, Gender, Age, Date, Camp, Essay, Payment, Recording, Status]

@@ -40,9 +40,9 @@ def editApplication():
                 while Instrument not in ['S','s','G','g','D','d','B','b','K','k','I','i']:
                     print ('Invalid Input!')
                     Instrument = input ('\n'.join(['enter instrument: ', 'S = Singer', 'G = Guitarist', 'D = Drummer', 'B = Bassist','K = Keyboardist', 'I = Instrumentalist']))
-                WaitingList[key] = NewList[key]
-                WaitingList[key].append(Talent)
-                WaitingList[key].append(Instrument)
+                FinalList[key] = NewList[key]
+                FinalList[key].append(Talent)
+                FinalList[key].append(Instrument)
                 
             elif NewStatus in ['A', 'a']:
                 Talent = input ('Enter Talent (1-4): ')
@@ -86,6 +86,7 @@ def editApplication():
         worksheet.write_row(row, 1, FinalList[key])
         row += 1
         row = 1
+
     WaitingList(director).write(0, 0, "ID Number")
     WaitingList(director).write(0, 1, "First Name")
     WaitingList(director).write(0, 2, "Last Name")
@@ -103,10 +104,6 @@ def editApplication():
     WaitingList(director).write(0, 14, "Dorm")
     WaitingList(director).write(0, 15, "Band")
     col = 0
-    for key in WaitingList.keys():
-        worksheet1.write(row, 0, key)
-        worksheet1.write_row(row, 1, WaitingList[key])
-        row += 1
     for key in DeclinedList.keys():
         worksheet1.write(row, 0, key)
         worksheet1.write_row(row, 1, DeclinedList[key])
