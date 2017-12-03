@@ -4,7 +4,7 @@ import pandas as pd
 from pandas import ExcelWriter
 from pandasql import sqldf
 
-url = "G:\Master - FE & IST\Information Systems And Technology\Software Development And Programming\Project\Algorithim\Group Changes\DD.xlsx"
+url = "DD.xlsx"
 xl = pd.read_excel(url, "Sheet1", 0)
 pysqldf = lambda q: sqldf(q, globals())
 # Fill in Data .
