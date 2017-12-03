@@ -57,18 +57,7 @@ def fillData(Input):
         print ('Wrong input, please check source')
         return False
 
-  
-""" elif Payment != '' and Payment in ['N','n']:
-        Recording = 'NA'
-        print('The application did not have an recording, Application is therfore invalid')
-        Status = 'Rejected - Incomplete'
-        return ListOfInformation
-    elif Recording!= '' and Recording in ['N', 'n']:
-        print('The application did not have an recording, Application is therfore invalid')
-        Status = 'Rejected - Incomplete'
-        ListOfInformation = [FirstName, LastName, Adress, Gender, Age, Date, Camp, Essay, Payment, Recording, Status]
-        return ListOfInformation """
-        
+ 
 def Applications():
     """ Applications should be an interface for the clerk to type in the applications recived for FuRS"""
     ListOfInformation = []
@@ -101,10 +90,6 @@ def Applications():
                 Camp = input ('\n'.join(["Enter the Camps they want to attend: ", "1 = June", "2 = July", "3 = August", '']))
             if timeCheck(Date, Camp) == False:
                     print ('Application not recived in time.')
-                    Status = 'Rejected - Time'
-                    Essay = 'NA' 
-                    Payment = 'NA'
-                    Recording = 'NA'
                     ListOfInformation = [FirstName, LastName, Adress, Gender, Age, Date, Camp, Essay, Payment, Recording, Status]
                     applicationList[(KeyNumber)] = ListOfInformation
                     continue
