@@ -11,6 +11,7 @@ pysqldf = lambda q: sqldf(q, globals())
 wb = px.load_workbook(url)
 ws = wb.get_sheet_by_name("Sheet1")
 sheet = wb.active
+
 def main():
 
 
@@ -20,7 +21,7 @@ def main():
         print(pysqldf(
             "Select [ID Number],[First Name], [Last Name],[Gender],[Instrument],[Talent], [Status] from xl where [Status]='A' and [Band]="+humanInput+" order by [ID Number]"))
         RM.replace_module()
-
+        wb.close()
 
     while True:
         humanInput = input ('\n'.join(['Select band for replacement: ','1: Band 1', '2: Band 2', '3: Band 3','4: Band 4','5: Band 5','6: Band 6','7: Band 7','8: Band 8','0: Exit Program', '']))
@@ -29,5 +30,7 @@ def main():
             humanInput = input ('\n'.join(['Select band for replacement: ','1: Band 1', '2: Band 2', '3: Band 3','4: Band 4','5: Band 5','6: Band 6','7: Band 7','8: Band 8','0: Exit Program', '']))
         if humanInput in ['1','2','3','4','5','6','7','8']:
             group()
-        elif humanInput in ["0"]:
+            wb.close()
             break
+        elif humanInput in ["0"]:
+            quit()

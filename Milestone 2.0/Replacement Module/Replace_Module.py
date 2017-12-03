@@ -93,7 +93,7 @@ def replace_module():
 
                                                 wb.save(url)
 
-                                                break
+                                                quit()
 
                                             if confirm2Input == '2':
                                                 break
@@ -105,29 +105,73 @@ def replace_module():
 
                             if searchid == '2':
                                 print(pysqldf("Select [ID Number],[First Name], [Last Name],[Gender],[Instrument],[Talent], [Status] from xl where [Status]='W' order by [ID Number]"))
-                                break
+                                ID2input = input("Enter the numeric ID of the waiting list student (or 0 to exit): ")
+                                while not ID2input.isdigit():
+                                    print('Invalid Input')
+                                    ID2input = input("Enter the numeric ID of the waiting list student (or 0 to exit): ")
+                                if ID2input!='0':
+                                    for crow in range(nRow, nlRow):
+                                        id2 = ws['A' + str(crow)].value
+                                        status2 = ws['L' + str(crow)].value
+                                        if str(ID2input) == id2 and status2 == 'W':
+
+                                            FName2 = ws['B' + str(crow)].value
+                                            LName2 = ws['C' + str(crow)].value
+                                            gender2 = (ws['E' + str(crow)].value)
+                                            talent2 = ws['M' + str(crow)].value
+                                            instrument2 = ws['N' + str(crow)].value
+                                            Dorm2 = str(ws['O' + str(crow)].value)
+                                            band2 = str(ws['P' + str(crow)].value)
+                                            print("Replace Student",'\n', id, FName + ' ' + LName, gender,
+                                                  talent, instrument, dorm, band, status, '\n', "with",
+                                                  '\n', id2, FName2 + ' ' + LName2, gender2, talent2,
+                                                  instrument2, Dorm2, band2, status2)
+                                            confirm2Input = input(
+                                                '\n'.join(['Confirm: ', '1: Yes', '2: No', '']))
+                                            while confirm2Input not in ['1', '2']:
+                                                print('Invalid Input')
+                                                confirm2Input = input(
+                                                    '\n'.join(['Confirm: ', '1: Yes', '2: No', '']))
+                                            if confirm2Input == '1':
+                                                ws['O' + str(crow)].value = dorm
+
+                                                ws['P' + str(crow)].value = band
+                                                ws['P' + str(row)].value = ''
+                                                ws['O' + str(row)].value = ''
+                                                ws['L' + str(crow)].value = 'A'
+                                                ws['L' + str(row)].value = 'D'
+
+                                                wb.save(url)
+
+                                                quit()
+
+                                            if confirm2Input == '2':
+                                                break
+                                            break
                             if searchid == '3':
                                 break
 
 
-                            break
                         if confirmInput == '2':
                             break
 
-                        break
+
+                    if str(IDinput) == id and status != 'A':
+                        print('Please insert a valid ID')
 
             if IDinput == '0':
                 break
-            break
+
 
     while True:
         humanInput = input('\n'.join(
-            ['Replace student by: ', '1: ID', '2: Name', '0: Go Back', '']))
-        while humanInput not in ['1', '2', '0']:
+            ['Replace student by: ', '1: ID', '0: Go Back', '']))
+        while humanInput not in ['1', '0']:
             print('Invalid Input')
             humanInput = input('\n'.join(
-                ['Replace student by: ', '1: ID', '2: Name', '0: Go Back', '']))
+                ['Replace student by: ', '1: ID',  '0: Go Back', '']))
         if humanInput == '1':
             ID()
+            quit()
         if humanInput == '0':
             break
