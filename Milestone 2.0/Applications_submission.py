@@ -90,6 +90,7 @@ def Applications():
                 Camp = input ('\n'.join(["Enter the Camps they want to attend: ", "1 = June", "2 = July", "3 = August", '']))
             if timeCheck(Date, Camp) == False:
                     print ('Application not recived in time.')
+                    Status = 'Rejected - Time'
                     ListOfInformation = [FirstName, LastName, Adress, Gender, Age, Date, Camp, Essay, Payment, Recording, Status]
                     applicationList[(KeyNumber)] = ListOfInformation
                     continue
