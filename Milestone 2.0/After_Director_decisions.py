@@ -85,7 +85,6 @@ def editApplication():
         worksheet.write(row, 0, key)
         worksheet.write_row(row, 1, FinalList[key])
         row += 1
-        row = 1
 
     WaitingList(director).write(0, 0, "ID Number")
     WaitingList(director).write(0, 1, "First Name")
