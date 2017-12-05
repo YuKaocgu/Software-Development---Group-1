@@ -12,14 +12,14 @@ def First_Band_Assign():
     wb = px.load_workbook(url)
     ws = wb.get_sheet_by_name("Sheet1")
     sheet = wb.active
-    b1 = {'gender':[]}
-    b2 = {'gender':[]}
-    b3 = {'gender':[]}
-    b4 = {'gender':[]}
-    b5 = {'gender':[]}
-    b6 = {'gender':[]}
-    b7 = {'gender':[]}
-    b8 = {'gender':[]}
+    b1 = {'gender':[],'type':'1'}
+    b2 = {'gender':[],'type':'1'}
+    b3 = {'gender':[],'type':'1'}
+    b4 = {'gender':[],'type':'1'}
+    b5 = {'gender':[],'type':'2'}
+    b6 = {'gender':[],'type':'2'}
+    b7 = {'gender':[],'type':'2'}
+    b8 = {'gender':[],'type':'2'}
     Bs1 = []
     Bs2 = []
     nRow = 1
@@ -140,20 +140,12 @@ def checkBandStatus(Bs1,Bs2,band,ins,talent):
     category = Band_Category(mockBand)
     if category == 1:
         if band not in Bs1:
-            if len(Bs1) == 4:
-                return False
-            elif len(Bs1) < 4 :
-                Bs1.append(band)
-                return True
+            return False
         else:
             return True
     else:
         if band not in Bs2:
-            if len(Bs2) == 4:
-                return False
-            elif len(Bs2) < 4 :
-                Bs2.append(band)
-                return True
+            return False
         else:
             return True
 
@@ -172,10 +164,11 @@ def check(band,band_gender,gender,ins,talent,Bs1,Bs2):
         if checkGender(band_gender,gender):
             if checkInstrument(band,ins):
                 if checkTalent(band,talent):
-                    if checkBandStatus(Bs1,Bs2,band,ins,talent):
+                    return True
+                    '''if checkBandStatus(Bs1,Bs2,band,ins,talent):
                         return True
                     else:
-                        return False
+                        return False'''
                 else:
                     return False
             else: return False
@@ -209,48 +202,43 @@ def checkTalent(band,talent):
         if talentList[0] == 0:
             return True
         elif talentList[0] == 1:
-            if talentList[1] == 2:
-                return False
-            elif talentList[2] == 2:
-                return False
-            else:
+            if band['type'] == '1':
                 return True
+            else: 
+                return False
+
         elif talentList[0] == 2:
             return False
     if talent == 2:
         if talentList[1] == 0:
             return True
         elif talentList[1] == 1:
-            if talentList[0] == 2:
-                return False
-            elif talentList[3] == 2:
-                return False
-            else:
+            if band['type'] == '2':
                 return True
+            else: 
+                return False
+
         elif talentList[1] == 2:
             return False
     if talent == 3:
         if talentList[2] == 0:
             return True
         elif talentList[2] == 1:
-            if talentList[0] == 2:
-                return False
-            elif talentList[3] == 2:
-                return False
-            else:
+            if band['type'] == '2':
                 return True
+            else: 
+                return False
+
         elif talentList[2] == 2:
             return False
     if talent == 4:
         if talentList[3] == 0:
             return True
         elif talentList[3] == 1:
-            if talentList[1] == 2:
-                return False
-            elif talentList[2] == 2:
-                return False
-            else:
+            if band['type'] == '1':
                 return True
+            else: 
+                return False
         elif talentList[3] == 2:
             return False
 
