@@ -32,7 +32,7 @@ def First_Band_Assign():
             gender = ws['E' + str(row)].value
             ins = ws['N' + str(row)].value
             talent = int(ws['M' + str(row)].value)
-            b_total = bandStatus2(b1,b2,b3,b4,b5,b6,b7,b8,ins)
+            b_total = bandStatus2(b1,b2,b3,b4,b5,b6,b7,b8,ins,gender)
             choice = talentChoice(b_total,talent)
             if choice == '1':
                 b1[ins] = talent
@@ -162,32 +162,40 @@ def checkInstrument(band,ins):
         return True
     else:
         return False
-def bandStatus2(b1,b2,b3,b4,b5,b6,b7,b8,ins):
+def bandStatus2(b1,b2,b3,b4,b5,b6,b7,b8,ins,gender):
     b_total = []
     if isNotFull(b1):
-        if checkInstrument(b1,ins):
-            b_total.append(b1)
+        if checkGender(b1['gender'],gender):
+            if checkInstrument(b1,ins):
+                b_total.append(b1)
     if isNotFull(b2):
-        if checkInstrument(b2,ins):
-            b_total.append(b2)
+        if checkGender(b2['gender'],gender):
+            if checkInstrument(b2,ins):
+                b_total.append(b2)
     if isNotFull(b3):
-        if checkInstrument(b3,ins):
-            b_total.append(b3)
+        if checkGender(b3['gender'],gender):
+            if checkInstrument(b3,ins):
+                b_total.append(b3)
     if isNotFull(b4):
-        if checkInstrument(b4,ins):
-            b_total.append(b4)
+        if checkGender(b4['gender'],gender):
+            if checkInstrument(b4,ins):
+                b_total.append(b4)
     if isNotFull(b5):
-        if checkInstrument(b5,ins):
-            b_total.append(b5)
+        if checkGender(b5['gender'],gender):
+            if checkInstrument(b5,ins):
+                b_total.append(b5)
     if isNotFull(b6):
-        if checkInstrument(b6,ins):
-            b_total.append(b6)
+        if checkGender(b6['gender'],gender):
+            if checkInstrument(b6,ins):
+                b_total.append(b6)
     if isNotFull(b7):
-        if checkInstrument(b7,ins):
-            b_total.append(b7)
+        if checkGender(b7['gender'],gender):
+            if checkInstrument(b7,ins):
+                b_total.append(b7)
     if isNotFull(b8):
-        if checkInstrument(b8,ins):
-            b_total.append(b8)
+        if checkGender(b8['gender'],gender):
+            if checkInstrument(b8,ins):
+                b_total.append(b8)
     return b_total
 
 
