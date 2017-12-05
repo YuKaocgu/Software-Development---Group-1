@@ -5,8 +5,18 @@ import pandas as pd
 NewList = {}
 FinalList = {}
 DeclinedList = {}
-
 applicationList = {}
+
+def loadPreviousFile():
+    humanInput = input('\n'.join([ 'Which year is the camp (20XX)', '']))
+    fileName = humanInput + '.csv'
+    with open(fileName) as csvfile:
+        next(csvfile)
+        reader = csv.reader(csvfile)
+        for row in reader:
+            key = row[0]
+            applicationList[key] = row[1:]
+
 
 camp1=datetime.strptime("06-10-17", "%m-%d-%y")
 camp2=datetime.strptime("07-08-17", "%m-%d-%y")
@@ -68,7 +78,7 @@ def Applications():
     else:
         KeyNumber = max(applicationList)
     while True:
-        humanInput = input('\n'.join([ 'N: To add a person.', 'P: to print the list to file. ','R: To return to the main menu', '']))
+        humanInput = input('\n'.join([ 'N: To add a person.', 'P: to print the list to file. ', 'L: Load a previous list' ,'R: To return to the main menu', '']))
         if humanInput in ['n', 'N']:
             KeyNumber += 1
             FirstName = input ("Enter the first name of the applicant: ")
@@ -131,14 +141,23 @@ def Applications():
             Status = 'awaiting directors call'
             ListOfInformation = [FirstName, LastName, Adress, Gender, Age, Date, Camp, Essay, Payment, Recording, Status]
             applicationList[(KeyNumber)] = ListOfInformation
-        if humanInput in ['r', 'R']:
+        elif humanInput in ['r', 'R']:
             print (applicationList)
             break
-        if humanInput in ['p', 'P']:
-            with open('TempDatabase.csv', 'w') as csv_file:
+        elif humanInput in ['p', 'P']:
+            humanInput = input('\n'.join([ 'Which year is the camp (20XX)', '']))
+            fileName = humanInput+'.csv'
+            with open(fileName, 'w') as csv_file:
                 writer = csv.writer(csv_file)
                 writer.writerow(["Id, FirstName, LastName, Adress, Gender, Age, Date, Camp, Essay, Payment, Recording, Status"])
                 for key, value in applicationList.items():
                     writer.writerow([key] + value)
-            print ('List saved to file as TempDatabase.csv')
+            print ('List saved to file as ' + fileName)
+        elif humanInput in ['L', 'l']:
+            loadPreviousFile()
+        elif humanInput not in ['p','P','r','R','n','N']:
+            print("Invalid Input")
+            humanInput = input('\n'.join([ 'N: To add a person.', 'P: to print the list to file. ','R: To return to the main menu', '']))
         print (applicationList)
+        
+
