@@ -2,10 +2,12 @@ import openpyxl as px
 import pandas as pd
 from pandas import ExcelWriter
 from pandasql import sqldf
+import warnings
 
 def First_Band_Assign():
     url = "DD.xlsx"
     xl = pd.read_excel(url, "Sheet1", 0)
+    warnings.simplefilter("ignore") 
     # Fill in Data .
     wb = px.load_workbook(url)
     ws = wb.get_sheet_by_name("Sheet1")
@@ -18,6 +20,8 @@ def First_Band_Assign():
     b6 = {'gender':[]}
     b7 = {'gender':[]}
     b8 = {'gender':[]}
+    Bs1 = []
+    Bs2 = []
     nRow = 1
     nlRow = ws.max_row + 1
     nlColumn = ws.max_column
@@ -28,41 +32,42 @@ def First_Band_Assign():
         if status == 'A':
             gender = ws['E' + str(row)].value
             ins = ws['N' + str(row)].value
-            talent = ws['M' + str(row)].value
-            if check(b1,b1['gender'],gender,ins,talent):
+            talent = int(ws['M' + str(row)].value)
+            if check(b1,b1['gender'],gender,ins,talent,Bs1,Bs2):
                 b1[ins] = talent
                 b1['gender'].append(gender)
                 ws["P"+str(row)] = 1
-            elif check(b2,b2['gender'],gender,ins,talent):
+            elif check(b2,b2['gender'],gender,ins,talent,Bs1,Bs2):
                 b2[ins] = talent
                 b2['gender'].append(gender)
                 ws["P"+str(row)] = 2
-            elif check(b3,b3['gender'],gender,ins,talent):
+            elif check(b3,b3['gender'],gender,ins,talent,Bs1,Bs2):
                 b3[ins] = talent
                 b3['gender'].append(gender)
                 ws["P"+str(row)] = 3
-            elif check(b4,b4['gender'],gender,ins,talent):
+            elif check(b4,b4['gender'],gender,ins,talent,Bs1,Bs2):
                 b4[ins] = talent
                 b4['gender'].append(gender)
                 ws["P"+str(row)] = 4
-            elif check(b5,b5['gender'],gender,ins,talent):
+            elif check(b5,b5['gender'],gender,ins,talent,Bs1,Bs2):
                 b5[ins] = talent
                 b5['gender'].append(gender)
                 ws["P"+str(row)] = 5
-            elif check(b6,b6['gender'],gender,ins,talent):
+            elif check(b6,b6['gender'],gender,ins,talent,Bs1,Bs2):
                 b6[ins] = talent
                 b6['gender'].append(gender)
                 ws["P"+str(row)] = 6
-            elif check(b7,b7['gender'],gender,ins,talent):
+            elif check(b7,b7['gender'],gender,ins,talent,Bs1,Bs2):
                 b7[ins] = talent
                 b7['gender'].append(gender)
                 ws["P"+str(row)] = 7
-            elif check(b8,b8['gender'],gender,ins,talent):
+            elif check(b8,b8['gender'],gender,ins,talent,Bs1,Bs2):
                 b8[ins] = talent
                 b8['gender'].append(gender)
                 ws["P"+str(row)] = 8
+        wb.save(url)
 
-    wb.save(url)
+
 #band2 assign: check talent -> make choice on age -> return ID -> Assigning
 def Second_Band_Assign():
     url = "DD.xlsx"
@@ -90,7 +95,7 @@ def Second_Band_Assign():
             gender = ws['E' + str(row)].value
             age = int(ws['F' + str(row)].value)
             ins = ws['N' + str(row)].value
-            talent = ws['M' + str(row)].value
+            talent = int(ws['M' + str(row)].value)
             if gender == "M":
                 b_total = talentStatus(mb1,mb2,mb3,mb4,ins,talent)
                 choice = ageChoice(b_total,age)
@@ -128,15 +133,49 @@ def Second_Band_Assign():
                     ws['Q'+str(row)] = 'F4'
                     fb4['age'].append(age)
                     fb4[ins] = talent  
+        wb.save(url)
+def checkBandStatus(Bs1,Bs2,band,ins,talent):
+    mockBand = band
+    mockBand[ins] = talent
+    category = Band_Category(mockBand)
+    if category == 1:
+        if band not in Bs1:
+            if len(Bs1) == 4:
+                return False
+            elif len(Bs1) < 4 :
+                Bs1.append(band)
+                return True
+        else:
+            return True
+    else:
+        if band not in Bs2:
+            if len(Bs2) == 4:
+                return False
+            elif len(Bs2) < 4 :
+                Bs2.append(band)
+                return True
+        else:
+            return True
 
-    wb.save(url)
 
-def check(band,band_gender,gender,ins,talent):
+
+
+def Band_Category(band):
+    talentList = [countTalent(band,1),countTalent(band,2),countTalent(band,3),countTalent(band,4)]
+    if talentList[0] == 2 or talentList[3] == 2:
+        return 1
+    elif talentList[1] == 2 or talentList[2] == 2:
+        return 2
+
+def check(band,band_gender,gender,ins,talent,Bs1,Bs2):
     if isNotFull(band):
         if checkGender(band_gender,gender):
             if checkInstrument(band,ins):
                 if checkTalent(band,talent):
-                    return True
+                    if checkBandStatus(Bs1,Bs2,band,ins,talent):
+                        return True
+                    else:
+                        return False
                 else:
                     return False
             else: return False
@@ -144,7 +183,6 @@ def check(band,band_gender,gender,ins,talent):
             return False
     else:
         return False
-
 
 def isNotFull(band):
     if countIns(band) < 6:
@@ -247,14 +285,6 @@ def countIf(list,x):
         if x == i:
             count += 1
     return count
-
-def getLetters(letter):
-    if 'a' <= letter <= 'z':
-        return chr(ord(letter)-32),letter
-    elif 'A' <= letter <= 'Z':
-        return letter,chr(ord(letter)+32)
-    else:
-        return letter,letter
 
 
 
