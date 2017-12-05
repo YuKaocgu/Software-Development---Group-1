@@ -32,7 +32,7 @@ def First_Band_Assign():
             gender = ws['E' + str(row)].value
             ins = ws['N' + str(row)].value
             talent = int(ws['M' + str(row)].value)
-            b_total = talentStatus2(b1,b2,b3,b4,b5,b6,b7,b8,ins)
+            b_total = bandStatus2(b1,b2,b3,b4,b5,b6,b7,b8,ins)
             choice = talentChoice(b_total,talent)
             if choice == '1':
                 b1[ins] = talent
@@ -69,7 +69,7 @@ def First_Band_Assign():
         wb.save(url)
 
 
-#band2 assign: check talent -> make choice on age -> return ID -> Assigning
+#band2 assign: check instrument -> make choice on age and talent -> return ID -> Assigning
 def Second_Band_Assign():
     url = "DD.xlsx"
     xl = pd.read_excel(url, "Sheet1", 0)
@@ -99,8 +99,8 @@ def Second_Band_Assign():
             ins = ws['N' + str(row)].value
             talent = int(ws['M' + str(row)].value)
             if gender == "M":
-                b_total = talentStatus(mb1,mb2,mb3,mb4,ins,talent)
-                choice = ageChoice(b_total,age)
+                b_total = bandStatus(mb1,mb2,mb3,mb4,ins)
+                choice = second_Band_Choice(b_total,age,talent)
                 if choice == "1":
                     ws['Q'+str(row)] = 'M1'
                     mb1['age'].append(age)
@@ -117,8 +117,8 @@ def Second_Band_Assign():
                     ws['Q'+str(row)] = 'M4'
                     mb4[ins] = talent 
             elif gender == "F":
-                b_total = talentStatus(fb1,fb2,fb3,fb4,ins,talent)
-                choice = ageChoice(b_total,age)
+                b_total = bandStatus(fb1,fb2,fb3,fb4,ins)
+                choice = second_Band_Choice(b_total,age,talent)
                 if choice == "1":
                     ws['Q'+str(row)] = 'F1'
                     fb1['age'].append(age)
@@ -141,26 +141,8 @@ def talentChoice(b_total,talent):
     for i in range(len(def_talent_list)):
         if def_talent_list[i] == max(def_talent_list):
             return b_total[i]['ID']
-def buildTalentList(b_total,talent):
-    talent_list = []
-    for b in b_total:
-        talent_list.append( abs(  avg_talent(b)-talent ) )
-    return talent_list
 
-def check(band,band_gender,gender,ins,talent):
-    if isNotFull(band):
-        if checkGender(band_gender,gender):
-            if checkInstrument(band,ins):
-                if checkTalent(band,talent):
-                    return True
-                else:
-                    return False
-            else:
-                return False
-        else:
-            return False
-    else:
-        return False
+
 
 def isNotFull(band):
     if countIns(band) < 6:
@@ -180,7 +162,7 @@ def checkInstrument(band,ins):
         return True
     else:
         return False
-def talentStatus2(b1,b2,b3,b4,b5,b6,b7,b8,ins):
+def bandStatus2(b1,b2,b3,b4,b5,b6,b7,b8,ins):
     b_total = []
     if isNotFull(b1):
         if checkInstrument(b1,ins):
@@ -226,14 +208,6 @@ def countGender(band_gender,gender):
         if g == gender:
             count += 1
     return count
-
-def sumOfTalent(band):
-    result = 0
-    for i in band.keys():
-        if i in ['S','s','D','d','K','k','I','i','G','g','B','b']:
-            result = result + int(band[i])
-    return result
-
 def countIf(list,x):
     count = 0
     for i in list:
@@ -243,7 +217,7 @@ def countIf(list,x):
 
 
 
-def talentStatus(b1,b2,b3,b4,ins,talent):
+def bandStatus(b1,b2,b3,b4,ins):
     b_total = []
     if isNotFull(b1):
         if checkInstrument(b1,ins):
@@ -258,11 +232,14 @@ def talentStatus(b1,b2,b3,b4,ins,talent):
         if checkInstrument(b4,ins):
             b_total.append(b4)
     return b_total
-
-def ageChoice(b_total,age):
+def second_Band_Choice(b_total,age,talent):
     def_age_list = buildAgeList(b_total,age)
+    def_talent_list = buildTalentList(b_total,talent)
+    weight_List = []
     for i in range(len(def_age_list)):
-        if def_age_list[i] == max(def_age_list):
+        weight_List.append(def_age_list[i]*0.5+def_talent_list[i]+0.5)
+    for i in range(len(weight_List)):
+        if weight_List[i] == max(weight_List):
             return b_total[i]['ID']
 
 def buildAgeList(b_total,age):
@@ -270,6 +247,11 @@ def buildAgeList(b_total,age):
     for b in b_total:
         age_list.append( abs(avg(b['age'])- age ) )
     return age_list
+def buildTalentList(b_total,talent):
+    talent_list = []
+    for b in b_total:
+        talent_list.append( abs(  avg_talent(b)-talent ) )
+    return talent_list
 
 def avg(band_age):
     if len(band_age) == 0:
