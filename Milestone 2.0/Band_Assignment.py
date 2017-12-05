@@ -12,14 +12,14 @@ def First_Band_Assign():
     wb = px.load_workbook(url)
     ws = wb.get_sheet_by_name("Sheet1")
     sheet = wb.active
-    b1 = {'gender':[],'type':'1'}
-    b2 = {'gender':[],'type':'1'}
-    b3 = {'gender':[],'type':'1'}
-    b4 = {'gender':[],'type':'1'}
-    b5 = {'gender':[],'type':'2'}
-    b6 = {'gender':[],'type':'2'}
-    b7 = {'gender':[],'type':'2'}
-    b8 = {'gender':[],'type':'2'}
+    b1 = {'gender':[],'ID':"1"}
+    b2 = {'gender':[],'ID':"2"}
+    b3 = {'gender':[],'ID':"3"}
+    b4 = {'gender':[],'ID':"4"}
+    b5 = {'gender':[],'ID':"5"}
+    b6 = {'gender':[],'ID':"6"}
+    b7 = {'gender':[],'ID':"7"}
+    b8 = {'gender':[],'ID':"8"}
 
     nRow = 1
     nlRow = ws.max_row + 1
@@ -32,35 +32,37 @@ def First_Band_Assign():
             gender = ws['E' + str(row)].value
             ins = ws['N' + str(row)].value
             talent = int(ws['M' + str(row)].value)
-            if check(b1,b1['gender'],gender,ins,talent):
+            b_total = talentStatus2(b1,b2,b3,b4,b5,b6,b7,b8,ins)
+            choice = talentChoice(b_total,talent)
+            if choice == '1':
                 b1[ins] = talent
                 b1['gender'].append(gender)
                 ws["P"+str(row)] = 1
-            elif check(b2,b2['gender'],gender,ins,talent):
+            elif choice == '2':
                 b2[ins] = talent
                 b2['gender'].append(gender)
                 ws["P"+str(row)] = 2
-            elif check(b3,b3['gender'],gender,ins,talent):
+            elif choice == '3':
                 b3[ins] = talent
                 b3['gender'].append(gender)
                 ws["P"+str(row)] = 3
-            elif check(b4,b4['gender'],gender,ins,talent):
+            elif choice == '4':
                 b4[ins] = talent
                 b4['gender'].append(gender)
                 ws["P"+str(row)] = 4
-            elif check(b5,b5['gender'],gender,ins,talent):
+            elif choice == '5':
                 b5[ins] = talent
                 b5['gender'].append(gender)
                 ws["P"+str(row)] = 5
-            elif check(b6,b6['gender'],gender,ins,talent):
+            elif choice == '6':
                 b6[ins] = talent
                 b6['gender'].append(gender)
                 ws["P"+str(row)] = 6
-            elif check(b7,b7['gender'],gender,ins,talent):
+            elif choice == '7':
                 b7[ins] = talent
                 b7['gender'].append(gender)
                 ws["P"+str(row)] = 7
-            elif check(b8,b8['gender'],gender,ins,talent):
+            elif choice == '8':
                 b8[ins] = talent
                 b8['gender'].append(gender)
                 ws["P"+str(row)] = 8
@@ -71,20 +73,21 @@ def First_Band_Assign():
 def Second_Band_Assign():
     url = "DD.xlsx"
     xl = pd.read_excel(url, "Sheet1", 0)
+    warnings.simplefilter("ignore")
     # Fill in Data .
     wb = px.load_workbook(url)
     ws = wb.get_sheet_by_name("Sheet1")
     sheet = wb.active
 
-    mb1 = {'age':[],'ID':"1",'type':'1'}
-    mb2 = {'age':[],'ID':"2",'type':'1'}
-    mb3 = {'age':[],'ID':"3",'type':'2'}
-    mb4 = {'age':[],'ID':"4",'type':'2'}
+    mb1 = {'age':[],'ID':"1"}
+    mb2 = {'age':[],'ID':"2"}
+    mb3 = {'age':[],'ID':"3"}
+    mb4 = {'age':[],'ID':"4"}
 
-    fb1 = {'age':[],'ID':"1",'type':'1'}
-    fb2 = {'age':[],'ID':"2",'type':'1'}
-    fb3 = {'age':[],'ID':"3",'type':'2'}
-    fb4 = {'age':[],'ID':"4",'type':'2'}
+    fb1 = {'age':[],'ID':"1"}
+    fb2 = {'age':[],'ID':"2"}
+    fb3 = {'age':[],'ID':"3"}
+    fb4 = {'age':[],'ID':"4"}
     nRow = 1
     nlRow = ws.max_row + 1
     nlColumn = ws.max_column
@@ -133,6 +136,16 @@ def Second_Band_Assign():
                     fb4['age'].append(age)
                     fb4[ins] = talent  
         wb.save(url)
+def talentChoice(b_total,talent):
+    def_talent_list = buildTalentList(b_total,talent)
+    for i in range(len(def_talent_list)):
+        if def_talent_list[i] == max(def_talent_list):
+            return b_total[i]['ID']
+def buildTalentList(b_total,talent):
+    talent_list = []
+    for b in b_total:
+        talent_list.append( abs(  avg_talent(b)-talent ) )
+    return talent_list
 
 def check(band,band_gender,gender,ins,talent):
     if isNotFull(band):
@@ -167,52 +180,33 @@ def checkInstrument(band,ins):
         return True
     else:
         return False
-
-def checkTalent(band,talent):
-    talentList = [countTalent(band,1),countTalent(band,2),countTalent(band,3),countTalent(band,4)]
-    if talent == 1:
-        if talentList[0] == 0:
-            return True
-        elif talentList[0] == 1:
-            if band['type'] == '1':
-                return True
-            else: 
-                return False
-
-        elif talentList[0] == 2:
-            return False
-    if talent == 2:
-        if talentList[1] == 0:
-            return True
-        elif talentList[1] == 1:
-            if band['type'] == '2':
-                return True
-            else: 
-                return False
-
-        elif talentList[1] == 2:
-            return False
-    if talent == 3:
-        if talentList[2] == 0:
-            return True
-        elif talentList[2] == 1:
-            if band['type'] == '2':
-                return True
-            else: 
-                return False
-
-        elif talentList[2] == 2:
-            return False
-    if talent == 4:
-        if talentList[3] == 0:
-            return True
-        elif talentList[3] == 1:
-            if band['type'] == '1':
-                return True
-            else: 
-                return False
-        elif talentList[3] == 2:
-            return False
+def talentStatus2(b1,b2,b3,b4,b5,b6,b7,b8,ins):
+    b_total = []
+    if isNotFull(b1):
+        if checkInstrument(b1,ins):
+            b_total.append(b1)
+    if isNotFull(b2):
+        if checkInstrument(b2,ins):
+            b_total.append(b2)
+    if isNotFull(b3):
+        if checkInstrument(b3,ins):
+            b_total.append(b3)
+    if isNotFull(b4):
+        if checkInstrument(b4,ins):
+            b_total.append(b4)
+    if isNotFull(b5):
+        if checkInstrument(b5,ins):
+            b_total.append(b5)
+    if isNotFull(b6):
+        if checkInstrument(b6,ins):
+            b_total.append(b6)
+    if isNotFull(b7):
+        if checkInstrument(b7,ins):
+            b_total.append(b7)
+    if isNotFull(b8):
+        if checkInstrument(b8,ins):
+            b_total.append(b8)
+    return b_total
 
 
 def checkGender(band_gender,gender):
@@ -253,20 +247,16 @@ def talentStatus(b1,b2,b3,b4,ins,talent):
     b_total = []
     if isNotFull(b1):
         if checkInstrument(b1,ins):
-            if checkTalent(b1,talent):
-                b_total.append(b1)
+            b_total.append(b1)
     if isNotFull(b2):
         if checkInstrument(b2,ins):
-            if checkTalent(b2,talent):
-                b_total.append(b2)
+            b_total.append(b2)
     if isNotFull(b3):
         if checkInstrument(b3,ins):
-            if checkTalent(b3,talent):
-                b_total.append(b3)
+            b_total.append(b3)
     if isNotFull(b4):
         if checkInstrument(b4,ins):
-            if checkTalent(b4,talent):
-                b_total.append(b4)
+            b_total.append(b4)
     return b_total
 
 def ageChoice(b_total,age):
@@ -286,3 +276,15 @@ def avg(band_age):
         return 0
     else:
         return sum(band_age)/len(band_age)
+def avg_talent(band):
+    if countIns(band) == 0:
+        return 0
+    else:
+        return sumOfTalent(band)/countIns(band)
+
+def sumOfTalent(band):
+    result = 0
+    for i in band.keys():
+        if i in ['S','s','D','d','K','k','I','i','G','g','B','b']:
+            result = result + int(band[i])
+    return result
