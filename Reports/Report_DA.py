@@ -1,15 +1,14 @@
-
+import openpyxl as px
 import pandas as pd
 from pandas import ExcelWriter
 from pandasql import sqldf
 
-def report_dorm_assignment():
+url = "DD.xlsx"
+xl = pd.read_excel(url, "Sheet1", 0)
+pysqldf = lambda q: sqldf(q, globals())
+sav = ExcelWriter("Dorm Assignment.xlsx")
 
-    url = "G:\Master - FE & IST\Information Systems And Technology\Software Development And Programming\Project\Algorithim\Correctly formatted Excel file\DD.xlsx"
-    sav = ExcelWriter("G:\Dorm Assignment.xls")
-
-    xl = pd.read_excel(url,"Sheet1",0)
-    pysqldf = lambda q: sqldf(q, globals())
+def report_dorm_assign():
 
     M1 = pysqldf("Select [ID Number],[First Name], [Last Name], [Dorm] from xl where [Status]='A'  and [Dorm]='M1' order by [First Name]")
     M1.to_excel(sav, sheet_name='Male Dorm1', index=False)
@@ -28,6 +27,9 @@ def report_dorm_assignment():
 
     F3 = pysqldf("Select [ID Number],[First Name], [Last Name], [Dorm] from xl where [Status]='A'  and [Dorm]='F3' order by [First Name]")
     F3.to_excel(sav, sheet_name='Female Dorm3', index=False)
+
+    WE = pysqldf("Select [ID Number],[First Name], [Last Name], [Band] from xl where [Status]='W'  and [Dorm]='' order by [First Name]")
+    WE.to_excel(sav, sheet_name='Waiting List', index=False)
 
     DE = pysqldf("Select [ID Number],[First Name], [Last Name], [Band] from xl where [Status]='A'  and [Dorm]='' order by [First Name]")
     DE.to_excel(sav, sheet_name='Unassigned', index=False)
