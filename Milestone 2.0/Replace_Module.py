@@ -33,8 +33,8 @@ def ID():
                     gender = (ws['E' + str(row)].value)
                     talent = ws['M' + str(row)].value
                     instrument = ws['N' + str(row)].value
-                    dorm = ws['O' + str(row)].value
-                    band = ws['P' + str(row)].value
+                    dorm = str(ws['O' + str(row)].value)
+                    band = str(ws['P' + str(row)].value)
                     print(id, FName+' '+LName,gender, talent,instrument,dorm,band,status )
 
                     confirmInput = input('\n'.join(['Confirm: ', '1: Yes', '2: No', '']))
@@ -144,6 +144,19 @@ def ID():
                                         break
                         if searchid == '3':
                             break
+
+
+                    if confirmInput == '2':
+                        break
+
+
+                if str(IDinput) == id and status != 'A':
+                    print('Please insert a valid ID')
+
+        if IDinput == '0':
+            break
+
+
 
 
                     if confirmInput == '2':
