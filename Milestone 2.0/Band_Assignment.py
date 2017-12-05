@@ -165,31 +165,35 @@ def checkInstrument(band,ins):
     else:
         return False
 
+
 def checkTalent(band,talent):
     if countTalent(band,talent) == 0:
         return True
     elif countTalent(band,talent) == 1:
-        if talent == 1 or talent == 4:
-            check1 = countTalent(band,2)
-            check2 = countTalent(band,3)
-            if check1 == 2 or check2 == 2:
+        talentList = [countTalent(band,1),countTalent(band,2),countTalent(band,3),countTalent(band,4)]
+        if talent == 1:
+            if talentList[1] < 2 and talentList[2] < 2:
+                return True
+            else: 
                 return False
-            else:
+        elif talent == 2:
+            if talentList[0] < 2 and talentList[3] < 2:
                 return True
-        elif talent == 2 or talent == 3:
-            check1 = countTalent(band,1)
-            check2 = countTalent(band,4)
-            if check1 == 2 or check2 == 2:
+            else: 
                 return False
-            else:
+        elif talent == 3:
+            if talentList[0] < 2 or talentList[3] < 2:
                 return True
-        else:
-            if (sumOfTalent(band) + int(talent)) <= 15:
+            else: 
+                return False
+        elif talent == 4:
+            if talentList[1] < 2 or talentList[2] < 2:
                 return True
-            else:
-                return False    
-    else: 
+            else: 
+                return False
+    elif countTalent(band,talent) == 2: 
         return False
+
 
 
 def checkGender(band_gender,gender):
