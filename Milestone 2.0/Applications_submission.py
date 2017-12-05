@@ -6,7 +6,7 @@ NewList = {}
 FinalList = {}
 DeclinedList = {}
 
-applicationList = {1: ['Yo', 'Ko', 'lkjsdngjsn', 'M', '20', '04-12-17', '1', 'y', 'y', 'y', 'awaiting directors call'], 2: ['Ann', 'Soph', 'jsdgj', 'F', '18', '04-12-17', '1', 'Y', 'Y', 'Y', 'awaiting directors call'], 3: ['Imad', 'Yah', 'jsdgj', 'F', '18', '04-12-17', '1', 'Y', 'Y', 'Y', 'Rejected - Incomplete']}
+applicationList = {}
 
 camp1=datetime.strptime("06-10-17", "%m-%d-%y")
 camp2=datetime.strptime("07-08-17", "%m-%d-%y")
@@ -81,7 +81,7 @@ def Applications():
             while not Age.isdigit():
                 print ('Input must be a number')
                 Age = input ("Enter Age of applicant: ")
-            Adress = input ("Enter Street adresse, Zip Code, City, State): ")
+            Adress = input ("Enter Street adresse, City, Zip Code, State): ")
             Adress = Adress.replace(","," ")
             Date = input ("Enter date of recived application (MM-DD-YY): ")
             Camp = input ('\n'.join(["Enter the Camps they want to attend: ", "1 = June", "2 = July", "3 = August", '']))
@@ -116,12 +116,12 @@ def Applications():
                 continue
             elif Payment == 'Y' or Payment == 'y': 
                 print ('Payment cleared. Continue process')
-            Recording = input ("Did the application have an recording? (Y or N): ")
+            Recording = input ("Did the application have a recording? (Y or N): ")
             while checkIfYorN(Recording) == False:
                 print ('Please write either Y or N')
-                Recording = input ("Did the application have an recording? (Y or N): ")
+                Recording = input ("Did the application have a recording? (Y or N): ")
             if fillData(Recording) != True:
-                print('The application did not have an recording, Application is therfore invalid')
+                print('The application did not have a recording, Application is therfore invalid')
                 Status = 'Rejected - Incomplete'
                 ListOfInformation = [FirstName, LastName, Adress, Gender, Age, Date, Camp, Essay, Payment, Recording, fillStatus]
                 applicationList[(KeyNumber)] = ListOfInformation   
@@ -142,4 +142,3 @@ def Applications():
                     writer.writerow([key] + value)
             print ('List saved to file as TempDatabase.csv')
         print (applicationList)
-        
