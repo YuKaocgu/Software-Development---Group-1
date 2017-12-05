@@ -25,7 +25,7 @@ def main():
         if humanInput == '5':
             CI.CheckIn()
         if humanInput == '6':
-            BA.Secound_Band_Assign()
+            BA.Second_Band_Assign()
             print("Bands successfully assigned into groups of all Males and All Females") 
         if humanInput == '7':
             Group_Change.change_menu()
