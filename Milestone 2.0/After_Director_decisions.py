@@ -1,5 +1,3 @@
-"""
-"""
 from datetime import timedelta, datetime
 import xlsxwriter
 import csv
@@ -10,7 +8,9 @@ DeclinedList = {}
 WaitingList = {}
 
 def editApplication():
-    with open('TempDatabase.csv') as csvfile:
+    humanInput = input('\n'.join([ 'Which year is the camp (20XX)', '']))
+    fileName = humanInput + '.csv'
+    with open(fileName) as csvfile:
         next(csvfile)
         reader = csv.reader(csvfile)
         for row in reader:
@@ -61,7 +61,7 @@ def editApplication():
             
     workbook = xlsxwriter.Workbook('DD.xlsx')
     worksheet = workbook.add_worksheet()
-    WaitingList(director) = workbook.add_worksheet()
+    worksheet1 = workbook.add_worksheet()
 
     worksheet.write(0, 0, "ID Number")
     worksheet.write(0, 1, "First Name")
@@ -86,23 +86,24 @@ def editApplication():
         worksheet.write_row(row, 1, FinalList[key])
         row += 1
 
-    WaitingList(director).write(0, 0, "ID Number")
-    WaitingList(director).write(0, 1, "First Name")
-    WaitingList(director).write(0, 2, "Last Name")
-    WaitingList(director).write(0, 3, "Adress")
-    WaitingList(director).write(0, 4, "Gender")
-    WaitingList(director).write(0, 5, "Age")
-    WaitingList(director).write(0, 6, "Date")
-    WaitingList(director).write(0, 7, "Camp")
-    WaitingList(director).write(0, 8, "Essay Included?")
-    WaitingList(director).write(0, 9, "Payment Cleared?")
-    WaitingList(director).write(0, 10, "Recording Included?")
-    WaitingList(director).write(0, 11, "Status")
-    WaitingList(director).write(0, 12, "Talent")
-    WaitingList(director).write(0, 13, "Instrument")
-    WaitingList(director).write(0, 14, "Dorm")
-    WaitingList(director).write(0, 15, "Band")
+    worksheet1.write(0, 0, "ID Number")
+    worksheet1.write(0, 1, "First Name")
+    worksheet1.write(0, 2, "Last Name")
+    worksheet1.write(0, 3, "Adress")
+    worksheet1.write(0, 4, "Gender")
+    worksheet1.write(0, 5, "Age")
+    worksheet1.write(0, 6, "Date")
+    worksheet1.write(0, 7, "Camp")
+    worksheet1.write(0, 8, "Essay Included?")
+    worksheet1.write(0, 9, "Payment Cleared?")
+    worksheet1.write(0, 10, "Recording Included?")
+    worksheet1.write(0, 11, "Status")
+    worksheet1.write(0, 12, "Talent")
+    worksheet1.write(0, 13, "Instrument")
+    worksheet1.write(0, 14, "Dorm")
+    worksheet1.write(0, 15, "Band")
     col = 0
+    row = 1
     for key in DeclinedList.keys():
         worksheet1.write(row, 0, key)
         worksheet1.write_row(row, 1, DeclinedList[key])
