@@ -6,6 +6,7 @@ def isFull(dorm):
         return True
     else:
         return False
+
 def avg(data_List):
     if len(data_List) == 0:
         return 0
@@ -54,6 +55,8 @@ def dorm_assign(Dorm1,Dorm2,Dorm3,age):
     elif Dorm_Status == [True,True,False]:
         Dorm3.append(age)
         return 3
+    elif Dorm_Status == [True,True,True]:
+        return 4 
 
 def start_assign():
     url = "DD.xlsx"
@@ -76,6 +79,7 @@ def start_assign():
         # Only targeting Accepted candidates
         status = ws['L' + str(row)].value
         if status=="A":
+            band = ws['']
             gender = (ws['E' + str(row)].value)
             age = int((ws['F' + str(row)].value))
             #Dorm assign:
@@ -85,7 +89,7 @@ def start_assign():
                     sheet['O' + str(row)] = "M1"
                 elif dorm_result == 2:
                     sheet['O' + str(row)] = "M2"
-                else:
+                elif dorm_result == 3:
                     sheet['O' + str(row)] = "M3"
             if gender == 'F':
                 dorm_result = dorm_assign(DormF1,DormF2,DormF3,age)
@@ -93,6 +97,6 @@ def start_assign():
                     sheet['O' + str(row)] = "F1"
                 elif dorm_result == 2:
                     sheet['O' + str(row)] = "F2"
-                else:
+                elif dorm_result == 3:
                     sheet['O' + str(row)] = "F3"
     wb.save(url)
