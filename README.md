@@ -19,7 +19,7 @@ we used a few special packages that you might need to pip install. If you are ru
     numpy
     pytest
 
-We have wrapped up this class for which this was developed, we will therefore not be updating any of the files in here. Feel free to download and use this in any way.
+We have wrapped up the class for which this was developed, we will therefore not be updating any of the files in here. Feel free to download and use this in any way.
 
 Test:
 Coverage tutorial:
